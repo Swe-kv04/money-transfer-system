@@ -1,8 +1,10 @@
 package com.fidelity.mts.services;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,11 +47,16 @@ public class AccountServiceImpl implements AccountService{
 
 	@Override
 	public ResponseEntity<?> getTransactions(int id) {
-		Optional<List<TransactionLog>> result = trepo.findByFromAccountId(id);
-		if (!result.isPresent()) {
+		Optional<List<TransactionLog>> fromresult = trepo.findByFromAccountId(id);
+		Optional<List<TransactionLog>> toresult = trepo.findByToAccountId(id);
+		if (!fromresult.isPresent() && !toresult.isPresent() ) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No transactions found");
 		}
-		return ResponseEntity.status(HttpStatus.OK).body(result.get());
+		List<TransactionLog> merged = Stream.concat(
+		        fromresult.orElseGet(Collections::emptyList).stream(),
+		        toresult.orElseGet(Collections::emptyList).stream()
+		).toList();
+		return ResponseEntity.status(HttpStatus.OK).body(merged);
 	}
 
 }

@@ -11,5 +11,5 @@ import com.fidelity.mts.entity.TransactionLog;
 public interface TransactionLogRepository extends JpaRepository<TransactionLog,String> {
 	Optional<TransactionLog> findByIdempotencyKey(String idempotencyKey);
 	Optional<List<TransactionLog>> findByFromAccountId(int fromAccountId);
-	
+	Optional<List<TransactionLog>> findByToAccountId(int toAccountId);
 }
