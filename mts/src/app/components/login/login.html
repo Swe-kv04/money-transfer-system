@@ -1,0 +1,52 @@
+<div class="login-page">
+
+    <div class="login-card">
+  
+      <!-- Icon Circle -->
+      <div class="icon-circle">
+        ₹
+      </div>
+  
+      <h2>Welcome Back</h2>
+  
+      <!-- Error Message -->
+      <div class="error-alert" *ngIf="errorMsg">
+        ⚠️ {{ errorMsg }}
+      </div>
+  
+      <!-- Login Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+  
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" placeholder="Enter your username" formControlName="username">
+        </div>
+  
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" placeholder="Enter your password" formControlName="password">
+        </div>
+  
+        <button type="submit" class="login-btn">
+          Login
+        </button>
+      </form>
+  
+      <p class="forgot">Forgot password?</p>
+  
+    </div>
+  
+    <!-- Screen Features Box -->
+    <div class="features-box">
+      <h3>SCREEN FEATURES</h3>
+      <ul>
+        <li>Username & Password fields with validation</li>
+        <li>Login button triggers authentication API</li>
+        <li>Error message display for invalid credentials</li>
+        <li>JWT token stored on successful login</li>
+        <li>Redirects to Dashboard on success</li>
+      </ul>
+    </div>
+  
+  </div>
+  
