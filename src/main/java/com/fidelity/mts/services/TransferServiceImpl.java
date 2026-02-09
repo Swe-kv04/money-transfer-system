@@ -32,13 +32,6 @@ public class TransferServiceImpl implements TransferService{
 	public ResponseEntity<?> transfer(TransferRequest tr) {
 		this.transferRequest = tr;
 		
-		TransactionLog transactionLog = new TransactionLog();
-		transactionLog.setFromAccountId(tr.getFromAccountId());
-		transactionLog.setToAccountId(tr.getToAccountId());
-		transactionLog.setIdempotencyKey(tr.getIdempotencyKey());
-		transactionLog.setAmount(tr.getAmount());
-		transactionLog.setStatus(TransactionStatus.FAILED);
-		
 		if (!validateTransfer()) {
 			ErrorResponse errorResponse = new ErrorResponse();
 			errorResponse.setErrorCode(this.errorCode);
@@ -48,6 +41,13 @@ public class TransferServiceImpl implements TransferService{
 			
 		}
 		else {
+
+			TransactionLog transactionLog = new TransactionLog();
+			transactionLog.setFromAccountId(tr.getFromAccountId());
+			transactionLog.setToAccountId(tr.getToAccountId());
+			transactionLog.setIdempotencyKey(tr.getIdempotencyKey());
+			transactionLog.setAmount(tr.getAmount());
+			transactionLog.setStatus(TransactionStatus.SUCCESS);
 			trepo.save(transactionLog);
 			
 			if (executeTransfer());
