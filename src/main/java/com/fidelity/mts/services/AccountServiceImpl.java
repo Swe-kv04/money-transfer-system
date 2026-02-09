@@ -33,7 +33,7 @@ public class AccountServiceImpl implements AccountService{
 	public Account getAccount(int id) {
 		Optional<Account> a = repo.findById(id);
 		if (!a.isPresent())
-			throw new AccountNotFoundException();
+			throw new AccountNotFoundException("Account not found");
 		return a.get();
 	}
 
@@ -41,7 +41,7 @@ public class AccountServiceImpl implements AccountService{
 	public BigDecimal getBalance(int id) {
 		Optional<Account> a = repo.findById(id);
 		if (!a.isPresent())
-			throw new AccountNotFoundException();
+			throw new AccountNotFoundException("Account not found");
 		return a.get().getBalance();
 	}
 

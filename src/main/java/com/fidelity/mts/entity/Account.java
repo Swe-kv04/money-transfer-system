@@ -6,6 +6,7 @@ import java.time.Instant;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fidelity.mts.enums.AccountStatus;
+import com.fidelity.mts.exceptions.InsufficientBalanceException;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -59,16 +60,22 @@ public class Account {
 
 
     public void debit(BigDecimal amount) {
-       
+    	if (this.balance.compareTo(amount) <= 0)
+    		throw new InsufficientBalanceException("Insufficient balance");
+    	this.balance = this.balance.subtract(amount);
+    	
     }
 
     public void credit(BigDecimal amount) {
-       
+    	this.balance = this.balance.add(amount);
+    	System.out.println("credit"+this.balance);
     }
     public AccountStatus isActive() {
-       return null;
+       return this.status;
     }
 
+   
+    
 
     @Override
     public String toString() {
