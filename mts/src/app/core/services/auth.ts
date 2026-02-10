@@ -13,7 +13,7 @@ export class Auth {
     constructor(private http: HttpClient, private router: Router) {}
   
     login(username: string, password: string) {
-      return this.http.post<any>(`${this.API}/login`, { username, password });
+      return this.http.post<any>(`${this.API}/login`, { email:username,password: password });
     }
   
     setToken(token: string) {
@@ -21,6 +21,7 @@ export class Auth {
     }
   
     getToken() {
+      console.log(localStorage.getItem('token'));
       return localStorage.getItem('token');
     }
   

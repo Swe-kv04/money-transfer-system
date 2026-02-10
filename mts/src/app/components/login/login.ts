@@ -33,16 +33,17 @@ export class Login {
     console.log("Username : ",username);
     console.log("Password:",password);
 
+    /*
     if (username==='swetha'&&password==='123456'){
       this.auth.setToken("dummy");
       this.router.navigate(['/dashboard']);
     }else{
       this.errorMsg='Invalid username or password';
     }
-
+*/
 
     //this got to do after we connect to backend
-    /*this.auth.login(username!, password!).subscribe({
+    this.auth.login(username!, password!).subscribe({
       next: res => {
         this.auth.setToken(res.token);
         this.router.navigate(['/dashboard']);
@@ -50,6 +51,6 @@ export class Login {
       error: () => {
         this.errorMsg = 'Invalid username or password';
       }
-    });*/
+    });
   }
 }
