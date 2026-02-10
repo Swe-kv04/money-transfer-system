@@ -1,22 +1,13 @@
 <div class="login-page">
-
-    <div class="login-card">
-  
-      <!-- Icon Circle -->
+    <div class="login-card">   
       <div class="icon-circle">
         ₹
       </div>
-  
       <h2>Welcome Back</h2>
-  
-      <!-- Error Message -->
       <div class="error-alert" *ngIf="errorMsg">
         ⚠️ {{ errorMsg }}
       </div>
-  
-      <!-- Login Form -->
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-  
         <div class="input-group">
           <label>Username</label>
           <input type="text" placeholder="Enter your username" formControlName="username">
@@ -31,12 +22,9 @@
           Login
         </button>
       </form>
-  
       <p class="forgot">Forgot password?</p>
-  
     </div>
-  
-    <!-- Screen Features Box -->
+ 
     <div class="features-box">
       <h3>SCREEN FEATURES</h3>
       <ul>

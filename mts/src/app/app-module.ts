@@ -8,18 +8,25 @@ import { Dashboard } from './components/dashboard/dashboard';
 import { HTTP_INTERCEPTORS, provideHttpClient, withFetch } from '@angular/common/http';
 import { authInterceptor } from './core/interceptors/auth-interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { History } from './components/history/history';
+import { CommonModule } from '@angular/common';
+import { Transfer } from './components/transfer/transfer';
+
 
 @NgModule({
   declarations: [
     App,
     Login,
-    Dashboard
+    Dashboard,
+    History,
+    Transfer
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
     
 
   ],

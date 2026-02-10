@@ -6,7 +6,6 @@
     font-family: Arial, sans-serif;
   }
   
-  /* Card */
   .login-card {
     width: 350px;
     background: #ffffff;
@@ -16,7 +15,7 @@
     text-align: center;
   }
   
-  /* Icon Circle */
+
   .icon-circle {
     width: 60px;
     height: 60px;
@@ -30,12 +29,12 @@
     margin: 0 auto 10px;
   }
   
-  /* Title */
+  
   .login-card h2 {
     margin: 10px 0 20px;
   }
   
-  /* Input */
+  
   .input-group {
     text-align: left;
     margin-bottom: 15px;
@@ -59,7 +58,7 @@
     border-color: #1e88e5;
   }
   
-  /* Button */
+  
   .login-btn {
     width: 100%;
     background: #1e88e5;
@@ -76,15 +75,13 @@
     background: #1565c0;
   }
   
-  /* Forgot */
   .forgot {
     margin-top: 10px;
     font-size: 13px;
     color: gray;
     cursor: pointer;
   }
-  
-  /* Error Alert */
+
   .error-alert {
     background: #ffe5e5;
     color: #d32f2f;
@@ -93,8 +90,7 @@
     font-size: 13px;
     margin-bottom: 10px;
   }
-  
-  /* Screen Features */
+
   .features-box {
     width: 350px;
     background: #fff3cd;

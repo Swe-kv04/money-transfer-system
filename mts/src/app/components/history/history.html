@@ -1,0 +1,22 @@
+<div class="page">
+  <h1 class="page-title">Transaction History</h1>
+ 
+  <div class="history-card" *ngFor="let tx of transactions">
+    <div>
+      <div class="name">
+        {{ tx.type === 'sent' ? 'Transfer to' : 'Received from' }}
+        {{ tx.name }}
+      </div>
+      <div class="meta">Today</div>
+    </div>
+ 
+    <div
+      class="amount"
+      [class.sent]="tx.type === 'sent'"
+      [class.received]="tx.type === 'received'">
+      {{ tx.type === 'sent' ? '-' : '+' }}₹{{ tx.amount }}
+    </div>
+  </div>
+</div>
+``
+ 
