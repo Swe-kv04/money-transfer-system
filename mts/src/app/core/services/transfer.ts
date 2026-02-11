@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Transaction } from '../interface/transfer-history-interface';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,8 @@ export class Transfer {
 
   constructor(private http: HttpClient) {}
 
-  transfer(data: any) {
-    return this.http.post(`${this.API}`, data);
+  transfer(id:number) {
+    return this.http.get<Transaction>(this.API+`/${id}`);
+      
   }
 }

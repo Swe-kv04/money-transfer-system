@@ -17,4 +17,6 @@ export class Transfer {
   transferMoney() {
     alert(`Transferred ₹${this.amount} to ${this.toAccount}`);
   }
+
+  
 }

@@ -3,13 +3,13 @@
     <!-- Welcome Section -->
     <div class="welcome">
       <p>Good Morning 👋</p>
-      <h2>{{ userName }}</h2>
+      <h2>{{ account.holderName }}</h2>
     </div>
   
     <!-- Balance Card -->
     <div class="balance-card">
       <p class="label">Available Balance</p>
-      <h1>₹ {{ balance | number:'1.2-2' }}</h1>
+      <h1>₹ {{ account.balance | number:'1.2-2' }}</h1>
       <p class="account">Account •••• 2345</p>
     </div>
   

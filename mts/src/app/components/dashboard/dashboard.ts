@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Account } from '../../core/services/account';
 import { Auth } from '../../core/services/auth';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AccountInterface } from '../../core/interface/accountInterface';
+import { AccountStatus } from '../../core/enums/account-status.enum';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,28 +13,48 @@ import { Router } from '@angular/router';
 })
 export class Dashboard {
   
-    userName = 'John Smith';
-    balance = 0;
+    userName  : number= 0;
+
+    account: AccountInterface=
+                {
+                  id: 0,
+                  holderName: '',
+                  balance: 0,
+                  status: AccountStatus.ACTIVE,
+                  version: 0,
+                  lastUpdated: new Date(),
+                };
+ 
   
-    constructor(private router: Router,private accountService: Account, private auth: Auth) {}
+    constructor(private route: ActivatedRoute,private router: Router,private accountService: Account, private auth: Auth, private cd:ChangeDetectorRef) {}
   
     goTransfer() {
-      this.router.navigate(['/transfer']);
+      this.router.navigate(['/transfer', this.userName]);
     }
   
     goHistory() {
-      this.router.navigate(['/history']);
+      console.log(this.userName);
+      this.router.navigate(['/history',this.userName]);
     }
   
     goProfile() {
       alert('Profile clicked');
     }
 
-  ngOnInit() {
-    this.accountService.getBalance().subscribe(res => {
-      this.balance = res.balance;
+  ngOnInit() : void{
+    
+    this.userName = Number(this.route.snapshot.paramMap.get('username'));
+    this.accountService.getAccount(this.userName).subscribe({
+      next: data => {this.account = data; console.log(this.account);this.cd.detectChanges();},
+      error: err => console.error(err),
+      
     });
+    
   }
+
+  
+
+
   
     logout() {
       localStorage.clear();

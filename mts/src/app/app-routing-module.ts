@@ -11,8 +11,8 @@ import { Transfer } from './components/transfer/transfer';
 const routes: Routes = [
    { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: Login },
-  { path: 'dashboard', component: Dashboard, canActivate: [authGuard] },
-  {path: 'history',component:History},
+  { path: 'dashboard/:username', component: Dashboard, canActivate: [authGuard] },
+  {path: 'history/:username',component:History},
   {path: 'transfer',component:Transfer}
 ];
 

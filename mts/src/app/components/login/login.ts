@@ -15,7 +15,7 @@ export class Login {
 
   constructor(private fb: FormBuilder, private auth: Auth, private router: Router) {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
+      username: ['', [Validators.required, Validators.minLength(1)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     })
   };
@@ -32,9 +32,9 @@ export class Login {
     console.log("Password:",password);
 
    
-    if (username==='swetha'&&password==='123456'){
+    if (username==='1'&&password==='123456'){
       this.auth.setToken("dummy");
-      this.router.navigate(['/dashboard']);
+     this.router.navigate(['/dashboard', username]);
     }else{
       this.errorMsg='Invalid username or password';
     }
