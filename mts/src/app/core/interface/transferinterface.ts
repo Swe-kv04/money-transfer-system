@@ -1,4 +1,4 @@
-import { TransactionHistory } from '../enums/transfer-history.enum';
+import { TransactionStatus } from '../enums/transaction-status.enum';
 
 export interface Transaction {
  
@@ -6,7 +6,7 @@ export interface Transaction {
   fromAccountId: number;
   toAccountId: number;
   amount: string;
-  status: TransactionHistory;
+  status: TransactionStatus;
   failureReason?: string | null;
   idempotencyKey: string;
   createdOn: string;

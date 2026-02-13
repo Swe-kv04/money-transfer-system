@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Auth } from '../../core/services/auth';
+
 
 @Component({
   selector: 'app-login',
@@ -13,9 +13,15 @@ export class Login {
   loginForm;
   errorMsg = '';
 
-  constructor(private fb: FormBuilder, private auth: Auth, private router: Router) {
+  username: string = '';
+	password : string = '';
+	isLoggedin = false;
+	error: string = '';
+  data : any = {};
+
+  constructor(private fb: FormBuilder, private router: Router) {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(1)]],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     })
   };
@@ -32,8 +38,8 @@ export class Login {
     console.log("Password:",password);
 
    
-    if (username==='1'&&password==='123456'){
-      this.auth.setToken("dummy");
+    if (username==='3'&&password==='123456'){
+      
      this.router.navigate(['/dashboard', username]);
     }else{
       this.errorMsg='Invalid username or password';

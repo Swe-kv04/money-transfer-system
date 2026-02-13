@@ -1,20 +1,18 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { Account } from '../../core/services/account';
+import { AccountStatus } from '../../core/enums/account-status.enum';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountInterface } from '../../core/interface/accountInterface';
-import { AccountStatus } from '../../core/enums/account-status.enum';
+import { Account } from '../../core/services/account';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-profile',
   standalone: false,
-  templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css',
+  templateUrl: './profile.html',
+  styleUrl: './profile.css',
 })
-export class Dashboard {
-  
-    userName  : number= 0;
-
-    account: AccountInterface=
+export class Profile {
+ userName  : number= 0;
+ account: AccountInterface=
                 {
                   id: 0,
                   holderName: '',
@@ -27,19 +25,6 @@ export class Dashboard {
   
     constructor(private route: ActivatedRoute,private router: Router,private accountService: Account, private cd:ChangeDetectorRef) {}
   
-    goTransfer() {
-      this.router.navigate(['/transfer', this.userName]);
-    }
-  
-    goHistory() {
-      console.log(this.userName);
-      this.router.navigate(['/history',this.userName]);
-    }
-  
-    goProfile() {
-       this.router.navigate(['/profile',this.userName]);
-    }
-
   ngOnInit() : void{
     
     this.userName = Number(this.route.snapshot.paramMap.get('username'));
@@ -50,15 +35,4 @@ export class Dashboard {
     });
     
   }
-
-  
-
-
-  
-    logout() {
-      localStorage.clear();
-      this.router.navigate(['/login']);
-
-    }
-  }
-  
+}

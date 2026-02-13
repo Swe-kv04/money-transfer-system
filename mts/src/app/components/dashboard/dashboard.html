@@ -1,19 +1,17 @@
 <div class="dashboard-container">
-
-    <!-- Welcome Section -->
     <div class="welcome">
       <p>Good Morning 👋</p>
       <h2>{{ account.holderName }}</h2>
     </div>
   
-    <!-- Balance Card -->
+    
     <div class="balance-card">
       <p class="label">Available Balance</p>
       <h1>₹ {{ account.balance | number:'1.2-2' }}</h1>
-      <p class="account">Account •••• 2345</p>
+      <p class="account">Account Number: {{account.id}}</p>
     </div>
   
-    <!-- 4 Box Icons Section -->
+    
     <div class="action-grid">
       <div class="action-box" (click)="goTransfer()">
         💸
@@ -36,23 +34,11 @@
       </div>
     </div>
   
-    <!-- Bottom Navigation Row -->
+    
     <div class="bottom-nav">
       <div class="nav-item active">🏠 Home</div>
       <div class="nav-item" (click)="goTransfer()">💸 Transfer</div>
       <div class="nav-item" (click)="goHistory()">📜 History</div>
-    </div>
-  
-    <!-- Screen Features -->
-    <div class="features-box">
-      <h3>SCREEN FEATURES</h3>
-      <ul>
-        <li>Displays account holder name from API</li>
-        <li>Shows current account balance</li>
-        <li>Quick access buttons for transfers & history</li>
-        <li>Profile management option</li>
-        <li>Secure logout functionality</li>
-      </ul>
     </div>
   
   </div>

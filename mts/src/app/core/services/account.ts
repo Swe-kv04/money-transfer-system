@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AccountInterface } from '../interface/accountInterface';
-import { Transaction } from '../interface/transfer-history-interface';
+import { Transaction } from '../interface/transferinterface';
 
 @Injectable({
   providedIn: 'root',

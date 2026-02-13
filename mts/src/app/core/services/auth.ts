@@ -1,37 +1,45 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { map } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
 })
-export class Auth {
+export class AuthService {
+  SESSION_KEY: string = 'auth_user'
 
-  
-    private API = 'http://localhost:8080/api/auth';
-  
-    constructor(private http: HttpClient, private router: Router) {}
-  
-    login(username: string, password: string) {
-      return this.http.post<any>(`${this.API}/login`, { email:username,password: password });
-    }
-  
-    setToken(token: string) {
-      localStorage.setItem('token', token);
-    }
-  
-    getToken() {
-      console.log(localStorage.getItem('token'));
-      return localStorage.getItem('token');
-    }
-  
-    isAuthenticated(): boolean {
-      return !!this.getToken();
-    }
-  
-    logout() {
-      localStorage.removeItem('token');
-      this.router.navigate(['/login']);
-    }
+	username: string = '';
+	password: string = '';
+
+ constructor(private http : HttpClient) { }
+
+ authenticate(username:string, password :string){
+    return this.http.get(`http://localhost:8383/auth`, {
+        headers: {authorization: 'Basic '+window.btoa(username+":"+password)}})
+          .pipe(map((res)=>{
+            this.username = username;
+            this.password = password;
+            sessionStorage.setItem(this.SESSION_KEY,username);
+          }));
+  };
+
+  logout() {
+		sessionStorage.removeItem(this.SESSION_KEY);
+		this.username = '';
+		this.password = '';
+	};
+
+  isUserLoggedin() {
+		let user = sessionStorage.getItem(this.SESSION_KEY)
+		if (user === null) return false
+		return true
+	};
+
+  getLoggedinUser() {
+		let user = sessionStorage.getItem(this.SESSION_KEY)
+		if (user === null) return ''
+		return user
+	};
   }
   

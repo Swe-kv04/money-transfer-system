@@ -1,5 +1,5 @@
 
-export enum TransactionHistory {
+export enum TransactionStatus {
   SUCCESS = 'SUCCESS',
   FAILED = 'FAILED'
 }

@@ -6,11 +6,11 @@ import { App } from './app';
 import { Login } from './components/login/login';
 import { Dashboard } from './components/dashboard/dashboard';
 import { HTTP_INTERCEPTORS, provideHttpClient, withFetch } from '@angular/common/http';
-import { authInterceptor } from './core/interceptors/auth-interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { History } from './components/history/history';
 import { CommonModule } from '@angular/common';
 import { Transfer } from './components/transfer/transfer';
+import { Profile } from './components/profile/profile';
 
 
 @NgModule({
@@ -19,7 +19,8 @@ import { Transfer } from './components/transfer/transfer';
     Login,
     Dashboard,
     History,
-    Transfer
+    Transfer,
+    Profile
   ],
   imports: [
     BrowserModule,
@@ -34,7 +35,7 @@ import { Transfer } from './components/transfer/transfer';
     provideBrowserGlobalErrorListeners(),
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
-    {provide: HTTP_INTERCEPTORS, useClass: authInterceptor,multi:true}
+    //{provide: HTTP_INTERCEPTORS, useClass: authInterceptor,multi:true}
   ],
   bootstrap: [App]
 })
