@@ -13,6 +13,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Version;
 
 
 @Entity
@@ -32,6 +33,7 @@ public class Account {
     private AccountStatus status;
 	
 	//@Column(nullable = false)
+	@Version
 	@Column(nullable = false, columnDefinition = "INT DEFAULT 0")
     private int version;
 	

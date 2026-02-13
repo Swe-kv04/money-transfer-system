@@ -94,7 +94,7 @@ public class TransferServiceImpl implements TransferService{
 	         throw new AccountNotFoundException( "Source account must exist");
 		 }
 		 if (!t.isPresent()) {
-			 throw new AccountNotFoundException( "Source account must exist");
+			 throw new AccountNotFoundException( "Destination account must exist");
 	         
 		 }
 		 if(f.get().getStatus() != AccountStatus.ACTIVE) {
