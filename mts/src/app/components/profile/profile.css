@@ -1,4 +1,4 @@
-/* account-summary.component.css */
+
 :host {
   display: block;
 }
@@ -30,7 +30,6 @@
   gap: 12px;
 }
 
-/* Each row mimics a form field: label + read-only value */
 .form-row {
   display: grid;
   grid-template-columns: 180px 1fr;
@@ -61,7 +60,6 @@
   align-items: center;
 }
 
-/* Status badges */
 .value.status {
   font-weight: 600;
   border-width: 1px;
@@ -79,7 +77,6 @@
   border-color: #fed7aa;
 }
 
-/* Responsive layout */
 @media (max-width: 640px) {
   .form-row {
     grid-template-columns: 1fr;

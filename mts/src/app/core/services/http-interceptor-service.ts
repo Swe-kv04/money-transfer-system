@@ -1,25 +1,20 @@
-import { Injectable } from '@angular/core';
-import { AuthService } from './auth';
-import { HttpEvent, HttpHandler, HttpHeaders, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpInterceptorFn } from '@angular/common/http';
+import { inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class HttpInterceptorService {
-  constructor(private authService : AuthService) { }
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      if(this.authService.isUserLoggedin()  && req.url.indexOf('basicauth') === -1) {
-      const request = req.clone({
-          headers: new HttpHeaders({
-            'Content-Type' : 'application/json',
-            'Authorization' :  `Basic ${window.btoa(this.authService.username+ ":"+this.authService.password)}`
-          })
-      });
-      return next.handle(request);
-    }
-      return next.handle(req);
+export const HttpInterceptorService: HttpInterceptorFn = (req, next) => {
+  const platformId = inject(PLATFORM_ID);
+  const isBrowser = isPlatformBrowser(platformId);
+ 
+  if (!isBrowser) {
+    return next(req);
   }
-  
-}
+ 
+  const token = sessionStorage.getItem('auth_token');
+  if (token && req.url.startsWith('http://localhost:8080')) {
+    req = req.clone({
+      setHeaders: { Authorization: `Basic ${token}` }
+    });
+  }
+  return next(req);
+};

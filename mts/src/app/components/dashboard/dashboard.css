@@ -4,8 +4,7 @@
     padding: 20px;
     font-family: Arial, sans-serif;
   }
-  
-  /* Welcome */
+
   .welcome p {
     margin: 0;
     color: gray;
@@ -13,8 +12,7 @@
   .welcome h2 {
     margin: 5px 0 15px;
   }
-  
-  /* Balance Card */
+
   .balance-card {
     background: linear-gradient(135deg, #1e88e5, #42a5f5);
     color: white;
@@ -34,8 +32,7 @@
     font-size: 12px;
     opacity: 0.8;
   }
-  
-  /* 4 Action Boxes */
+
   .action-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -66,8 +63,7 @@
   .logout {
     background: #ffecec;
   }
-  
-  /* Bottom Navigation */
+
   .bottom-nav {
     display: flex;
     justify-content: space-around;
@@ -86,8 +82,7 @@
     color: #1e88e5;
     font-weight: bold;
   }
-  
-  /* Screen Features */
+
   .features-box {
     background: #fff3cd;
     border-left: 5px solid orange;

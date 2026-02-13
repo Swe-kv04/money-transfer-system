@@ -38,5 +38,15 @@
         {{ account.lastUpdated | date:'medium':'UTC' }}
       </div>
     </div>
+    <br>
+    <div class="modal-actions">
+      <button
+        type="button"
+        class="btn btn-primary"
+        [routerLink]="['/dashboard', account.id]"
+      >
+        ← Back to Dashboard
+      </button>
+    </div>
   </div>
 </section>

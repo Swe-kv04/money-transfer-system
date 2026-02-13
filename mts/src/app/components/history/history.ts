@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { Transaction } from '../../core/interface/transferinterface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from '../../core/services/account';
+import { AuthService } from '../../core/services/auth';
 
  
 @Component({
@@ -14,15 +15,23 @@ export class History {
   userName: number = 0;
   transactions: any[] = [];
   activeTab: 'all' | 'sent' | 'received' = 'all';
+  isLoggedin : boolean = false;
  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private accountService: Account,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private authService: AuthService
   ) {}
  
   ngOnInit(): void {
+    this.isLoggedin = this.authService.isUserLoggedin();
+    if (!this.isLoggedin){
+      this.router.navigateByUrl('login');
+    }
+
+
     const rawParam = this.route.snapshot.paramMap.get('username');
     this.userName = Number(rawParam);
     if (!Number.isFinite(this.userName)) this.userName = 0;
@@ -107,7 +116,7 @@ export class History {
   }
  
   goTransfer(): void {
-    this.router.navigate(['/transfer']);
+    this.router.navigate(['/transfer', this.userName]);
   }
  
   goHistory(): void {

@@ -1,7 +1,7 @@
 .transfer-container {
   display: flex;
   flex-direction: column;
-  align-items: center;  /* centers the card horizontally */
+  align-items: center;  
   width: 100%;
 }
  
@@ -9,7 +9,7 @@
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 24px;
-  text-align: center;   /* center title */
+  text-align: center;   
 }
  
 .transfer-card {
@@ -20,7 +20,6 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
  
-/* rest of your existing styles */
 .from {
   margin-bottom: 20px;
 }
@@ -91,7 +90,6 @@ modal-overlay {
   z-index: 1000;
 }
 
-/* Modal content box */
 .modal-content {
   background-color: beige;
   padding: 20px;
@@ -102,7 +100,6 @@ modal-overlay {
   animation: slideIn 0.3s ease-out;
 }
 
-/* Modal animations */
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -114,7 +111,6 @@ modal-overlay {
   }
 }
 
-/* Details styling */
 .modal-details-success {
   margin-top: 20px;
   text-align: left;

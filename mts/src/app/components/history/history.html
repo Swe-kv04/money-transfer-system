@@ -1,13 +1,12 @@
 <div class="page">
-<!-- App Bar -->
+
 <div class="app-bar">
 <button class="nav-btn" aria-label="Menu">
 <span class="nav-icon"></span>
 </button>
 <h1 class="title">Transaction History</h1>
 </div>
- 
-  <!-- Filter Tabs -->
+
 <div class="filters">
 <button
       class="pill"
@@ -32,14 +31,14 @@
 </button>
 </div>
  
-  <!-- Transactions -->
+
 <div
     class="history-card"
     *ngFor="let tx of filteredTransactions"
     data-testid="tx-row"
 >
 <div class="left">
-<!-- Debit/Credit icon in a tinted circle -->
+
 <div
         class="dir-circle"
         [class.sent]="isSent(tx)"
@@ -96,7 +95,7 @@
 </div>
 </div>
  
-  <!-- Bottom nav -->
+
 <nav class="bottom-nav" aria-label="Primary">
 <div class="nav-item" (click)="goHome()">🏠 Home</div>
 <div class="nav-item" (click)="goTransfer()">💸 Transfer</div>

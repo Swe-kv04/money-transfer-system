@@ -17,6 +17,19 @@
       <p><strong>Error Code</strong> {{modalDetails.errorCode}}</p>
       <p><strong>Message:</strong> {{modalDetails.message}}</p>
     </div>
+
+    <br>
+    <br>
+<div class="modal-actions">
+      <button
+        type="button"
+        class="btn btn-primary"
+        [routerLink]="['/dashboard', transferReq.fromAccountId]"
+      >
+        ← Back to Dashboard
+      </button>
+    </div>
+
    
   </div>
 </div>

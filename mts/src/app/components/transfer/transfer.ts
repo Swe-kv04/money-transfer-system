@@ -6,6 +6,7 @@ import { Transferrequest } from '../../core/dto/transferrequest';
 import { Transferresponse } from '../../core/dto/transferresponse';
 import { Errorresponse } from '../../core/dto/errorresponse';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../../core/services/auth';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class Transfer {
   modalMessage: string = '';
   modalDetails: any = null;
   modalCase: String=''
+  isLoggedin : boolean = false;
 
   transferReq: Transferrequest = {
       fromAccountId : 0,
@@ -29,10 +31,20 @@ export class Transfer {
   };
   note = '';
 
-  constructor(private route: ActivatedRoute,private router: Router,private transferService: TransferService, private cd:ChangeDetectorRef) {}
+  constructor(private route: ActivatedRoute,private router: Router,private transferService: TransferService, private cd:ChangeDetectorRef,private authService : AuthService) {}
   
   ngOnInit():void{
+    this.isLoggedin = this.authService.isUserLoggedin();
+    if (!this.isLoggedin){
+      this.router.navigateByUrl('login');
+    }
+    
     this.transferReq.fromAccountId = Number(this.route.snapshot.paramMap.get('username'));
+    
+
+      
+
+   
   }
 
  
@@ -45,7 +57,6 @@ export class Transfer {
             this.modalDetails = res; 
             this.showModal = true;
             this.modalCase = 'success';
-            //this.router.navigate(['/dashboard', this.transferReq.fromAccountId]);
             this.cd.detectChanges();
         },
         error: (err : HttpErrorResponse) =>{
@@ -74,7 +85,7 @@ export class Transfer {
   }
 
    closeModal() {
-    this.showModal = false; // Close the modal
+    this.showModal = false; 
   }
 
   

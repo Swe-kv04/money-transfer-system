@@ -3,6 +3,7 @@ import { Account } from '../../core/services/account';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountInterface } from '../../core/interface/accountInterface';
 import { AccountStatus } from '../../core/enums/account-status.enum';
+import { AuthService } from '../../core/services/auth';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +13,7 @@ import { AccountStatus } from '../../core/enums/account-status.enum';
 })
 export class Dashboard {
   
+    isLoggedin = false;
     userName  : number= 0;
 
     account: AccountInterface=
@@ -23,9 +25,9 @@ export class Dashboard {
                   version: 0,
                   lastUpdated: new Date(),
                 };
- 
+
   
-    constructor(private route: ActivatedRoute,private router: Router,private accountService: Account, private cd:ChangeDetectorRef) {}
+    constructor(private route: ActivatedRoute,private router: Router,private accountService: Account, private cd:ChangeDetectorRef,private authService: AuthService) {}
   
     goTransfer() {
       this.router.navigate(['/transfer', this.userName]);
@@ -41,22 +43,24 @@ export class Dashboard {
     }
 
   ngOnInit() : void{
-    
-    this.userName = Number(this.route.snapshot.paramMap.get('username'));
-    this.accountService.getAccount(this.userName).subscribe({
-      next: data => {this.account = data; console.log(this.account);this.cd.detectChanges();},
-      error: err => console.error(err),
+    this.isLoggedin = this.authService.isUserLoggedin();
+    if(this.isLoggedin){
+         this.userName = Number(this.route.snapshot.paramMap.get('username'));
+        this.accountService.getAccount(this.userName).subscribe({
+          next: data => {this.account = data; console.log(this.account);this.cd.detectChanges();},
+          error: err => console.error(err),
       
     });
+    }
+    else{
+      this.router.navigateByUrl('login');
+    }
+   
     
   }
-
-  
-
-
   
     logout() {
-      localStorage.clear();
+      this.authService.logout();
       this.router.navigate(['/login']);
 
     }
