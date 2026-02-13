@@ -22,7 +22,7 @@ export class Login {
   constructor(private fb: FormBuilder, private router: Router, private authService : AuthService) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required]]
     })
   };
 
@@ -46,7 +46,8 @@ export class Login {
               this.router.navigate(['/dashboard', username]);
         }); 
         } else {
-          window.alert("Invalid creditials!!!");
+          console.log("invalid");
+          alert("Invalid creditials!!!");
         }
 
     
